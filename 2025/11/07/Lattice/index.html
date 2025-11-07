@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Lattice 笔记 1 | Lst4r's Blog</title><meta name="author" content="Lst4r"><meta name="copyright" content="Lst4r"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="各种格上问题积累与理解1. $Ax \equiv y \pmod{P} (对应 \ Wiener’s \ Attack)$$A, P$ 已知，$x, y$ 相对为小量可以将其转化为 Ax+kP &#x3D; y$wiener$ 里则为 ed+k\phi(n)&#x3D;1构造(x,k)*\begin{bmatrix} 1 &amp; A\\ 0&amp;P\end{bmatrix} &#x3D; (x,y)满足 $||w|| &#x3D; (x^2+y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lattice 笔记 1">
+<meta property="og:url" content="https://lst4r-max.github.io/2025/11/07/Lattice/index.html">
+<meta property="og:site_name" content="Lst4r&#39;s Blog">
+<meta property="og:description" content="各种格上问题积累与理解1. $Ax \equiv y \pmod{P} (对应 \ Wiener’s \ Attack)$$A, P$ 已知，$x, y$ 相对为小量可以将其转化为 Ax+kP &#x3D; y$wiener$ 里则为 ed+k\phi(n)&#x3D;1构造(x,k)*\begin{bmatrix} 1 &amp; A\\ 0&amp;P\end{bmatrix} &#x3D; (x,y)满足 $||w|| &#x3D; (x^2+y">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lst4r-max.github.io/img/1.jpg">
+<meta property="article:published_time" content="2025-11-07T15:48:36.000Z">
+<meta property="article:modified_time" content="2025-11-07T16:23:12.933Z">
+<meta property="article:author" content="Lst4r">
+<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="LaTex">
+<meta property="article:tag" content="Lattice">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lst4r-max.github.io/img/1.jpg"><link rel="shortcut icon" href="/img/1.jpg"><link rel="canonical" href="https://lst4r-max.github.io/2025/11/07/Lattice/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Lattice 笔记 1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-08 00:23:12'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent"><nav id="nav"><span id="blog-info"><a href="/" title="Lst4r's Blog"><span class="site-name">Lst4r's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Lattice 笔记 1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-07T15:48:36.000Z" title="发表于 2025-11-07 23:48:36">2025-11-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-07T16:23:12.933Z" title="更新于 2025-11-08 00:23:12">2025-11-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Lattice 笔记 1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="各种格上问题积累与理解"><a href="#各种格上问题积累与理解" class="headerlink" title="各种格上问题积累与理解"></a>各种格上问题积累与理解</h1><h2 id="1-Ax-equiv-y-pmod-P-对应-Wiener’s-Attack"><a href="#1-Ax-equiv-y-pmod-P-对应-Wiener’s-Attack" class="headerlink" title="1. $Ax \equiv y \pmod{P} (对应 \ Wiener’s \ Attack)$"></a>1. $Ax \equiv y \pmod{P} (对应 \ Wiener’s \ Attack)$</h2><h3 id="A-P-已知，-x-y-相对为小量"><a href="#A-P-已知，-x-y-相对为小量" class="headerlink" title="$A, P$ 已知，$x, y$ 相对为小量"></a>$A, P$ 已知，$x, y$ 相对为小量</h3><p>可以将其转化为</p>
+<script type="math/tex; mode=display">Ax+kP = y</script><p>$wiener$ 里则为</p>
+<script type="math/tex; mode=display">ed+k\phi(n)=1</script><h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><script type="math/tex; mode=display">(x,k)*\begin{bmatrix} 1 & A\\ 0&P\end{bmatrix} = (x,y)</script><p>满足 $||w|| = (x^2+y^2)^{\frac{1}{2}} \le \sqrt{2}det(M)^{\frac{1}{2}}$</p>
+<p>则很大可能 $w$ 为最短向量</p>
+<p>（若 x,y 大小不相当，就可以适当配平使其界更紧）</p>
+<h2 id="2-A-ix-i-equiv-Y-pmod-P"><a href="#2-A-ix-i-equiv-Y-pmod-P" class="headerlink" title="2. $A_ix_i\equiv Y \pmod{P}$"></a>2. $A_ix_i\equiv Y \pmod{P}$</h2><h3 id="已知-A-i-P-Y-为未知大数"><a href="#已知-A-i-P-Y-为未知大数" class="headerlink" title="已知 $A_i, P$ ; $Y$ 为未知大数"></a>已知 $A_i, P$ ; $Y$ 为未知大数</h3><h3 id="问题转换1"><a href="#问题转换1" class="headerlink" title="问题转换1:"></a>问题转换1:</h3><p>$A_ix_i\equiv Y \pmod{P}$ 变为 $x_iY^{-1} \equiv A_{i}^{-1} \pmod{P}$</p>
+<p>即 $x_iY\equiv A_i \pmod{P}$ 的问题</p>
+<h3 id="问题转换2"><a href="#问题转换2" class="headerlink" title="问题转换2:"></a>问题转换2:</h3><p>$A^{‘} = x_{2} * x_{1}^{-1} \equiv A_{2} Y^{-1}  Y A_{1}^{-1}\equiv A_{2} A_{1}^{-1} \pmod{P} $</p>
+<p>$x^{‘} = x_1 \pmod{P} $<br>$ y^{‘} = x_2 \pmod{P}$</p>
+<p>即 $A^{‘}x^{‘} \equiv y^{‘} \pmod{P}$</p>
+<h2 id="3-Sigma-n-i-1-A-ix-i-equiv-y-pmod-P"><a href="#3-Sigma-n-i-1-A-ix-i-equiv-y-pmod-P" class="headerlink" title="3. $\Sigma^{n}_{i=1} A_ix_i \equiv y \pmod{P}$"></a>3. $\Sigma^{n}_{i=1} A_ix_i \equiv y \pmod{P}$</h2><h3 id="已知-A-i-P"><a href="#已知-A-i-P" class="headerlink" title="已知 $A_i,P$"></a>已知 $A_i,P$</h3><h3 id="构造-1"><a href="#构造-1" class="headerlink" title="构造"></a>构造</h3><script type="math/tex; mode=display">(x_1, x_2, \cdots,x_n,k)*\begin{bmatrix}1&0&\cdots&0&A_1 \\ 0&1&\cdots&0&A_2 \\ \vdots&\vdots&\ddots&\vdots&\vdots\\ 0&0&\cdots&1&A_n \\ 0&0&\cdots&0&P\end{bmatrix} = (x_1,x_2,\cdots,x_n,y)</script><script type="math/tex; mode=display">x_{max} \le P^{\frac{1}{n+1}}</script><h2 id="4-Sigma-n-i-1-A-ix-i-equiv-B-pmod-P"><a href="#4-Sigma-n-i-1-A-ix-i-equiv-B-pmod-P" class="headerlink" title="4. $\Sigma^{n}_{i=1} A_ix_i \equiv B \pmod{P}$"></a>4. $\Sigma^{n}_{i=1} A_ix_i \equiv B \pmod{P}$</h2><h3 id="已知-A-i-P-B"><a href="#已知-A-i-P-B" class="headerlink" title="已知 $A_i, P, B$"></a>已知 $A_i, P, B$</h3><p>背包格</p>
+<h3 id="构造-2"><a href="#构造-2" class="headerlink" title="构造"></a>构造</h3><script type="math/tex; mode=display">(x_1, x_2, \cdots,x_n,k, -1)*\begin{bmatrix}1&0&\cdots&0&0&A_1 \\ 0&1&\cdots&0&0&A_2 \\ \vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\ 0&0&\cdots&1&0&A_n \\ 0&0&\cdots&0&1&P\\1&1&\cdots&1&1&B \end{bmatrix} = (x_1-1,x_2-1,\cdots,x_n-1,k-1,0)</script><script type="math/tex; mode=display">x_{max} \le P^{\frac{1}{n+2}}</script><h2 id="5-A-ix-i-equiv-y-i-pmod-P-s-对应扩展-wiener"><a href="#5-A-ix-i-equiv-y-i-pmod-P-s-对应扩展-wiener" class="headerlink" title="5. $A_ix_i\equiv y_i \pmod{(P+s)}$ (对应扩展 wiener)"></a>5. $A_ix_i\equiv y_i \pmod{(P+s)}$ (对应扩展 wiener)</h2><h3 id="已知-A-i-P-1"><a href="#已知-A-i-P-1" class="headerlink" title="已知 $A_i, P$"></a>已知 $A_i, P$</h3><p>先给定两组数据</p>
+<script type="math/tex; mode=display">A_1x_1\equiv y_1 \pmod{(P+s)}</script><script type="math/tex; mode=display">A_2x_2\equiv y_2 \pmod{(P+s)}</script><p>拆开得</p>
+<script type="math/tex; mode=display">A_1x_1+k_1P=y_1-k_1s  \ \ \ ①</script><script type="math/tex; mode=display">A_2x_2+k_2P=y_2-k_2s\ \ \ ②</script><p>①*② 得</p>
+<script type="math/tex; mode=display">(A_1x_1+k_1P)(A_2x_2+k_2P)=A_1A_2x_1x_2+A_1Px_1k_2+A_2Px_2k_1+P^2k_1k_2</script><h3 id="四个等式："><a href="#四个等式：" class="headerlink" title="四个等式："></a>四个等式：</h3><script type="math/tex; mode=display">k_1k_2 = k_1k_2</script><script type="math/tex; mode=display">(A_1x_1+k_1P)k_2=(y_1-k_1s)k_2</script><script type="math/tex; mode=display">A_1x_1k_2 - A_2x_2k_1 = y_1k_2-y_2k_1</script><script type="math/tex; mode=display">(A_1x_1+k_1P)(A_2x_2+k_2P)=A_1A_2x_1x_2+A_1Px_1k_2+A_2Px_2k_1+P^2k_1k_2</script><h3 id="构造-3"><a href="#构造-3" class="headerlink" title="构造"></a>构造</h3><script type="math/tex; mode=display">(k_1k_2,x_1k_2,x_2k_1,x_1x_2)\begin{bmatrix}1&P&0&P^2\\ 0&A_1&A_1&A_1P\\ 0&0&-A_2&A_2P\\ 0&0&0&A_1A_2\end{bmatrix} = (k_1k_2,(y_1-k_1s)k_2,y_1k_2-y_2k_1,(y_1-k_1s)(y_2-k_2s))</script><h3 id="配平"><a href="#配平" class="headerlink" title="配平"></a>配平</h3><p>$x_i \le O(P^{\alpha}) \\ y_i \le O(P^{\beta}) \\ s \le O(P^{\gamma})$</p>
+<p>在 $w$ 上的大小分别为$(P^{2\alpha},P^{2\alpha+\gamma},P^{\alpha+\beta},P^{2\alpha+2\gamma})$</p>
+<p>所以构造对角矩阵 $D$</p>
+<script type="math/tex; mode=display">D = \begin{bmatrix}P^{2\gamma}&0&0&0\\ 0&P^{\gamma}&0&0\\ 0&0&P^{\alpha-\beta+2\gamma}&0\\ 0&0&0&1\end{bmatrix}</script><p>要满足 $7\alpha+\beta+3\gamma\le4$ ，前提 $\alpha+\gamma\ge \beta$</p>
+<h3 id="“Minkowski-sum-based-lattice-construction-for-multivariate-simultaneous-Coppersmith’s-technique-and-applications-to-RSA”-Section-4"><a href="#“Minkowski-sum-based-lattice-construction-for-multivariate-simultaneous-Coppersmith’s-technique-and-applications-to-RSA”-Section-4" class="headerlink" title="“Minkowski sum based lattice construction for multivariate simultaneous Coppersmith’s technique and applications to RSA” (Section 4)"></a>“Minkowski sum based lattice construction for multivariate simultaneous Coppersmith’s technique and applications to RSA” (Section 4)</h3><p>这篇论文是打湾区杯的时候搜到的，具体算法的步骤为</p>
+<p><img src="/img/lattice_paper1.jpg" alt="算法步骤"></p>
+<p>可以将界进一步提升</p>
+<h2 id="6-a-iX-equiv-y-i-pmod-P-i-s-i"><a href="#6-a-iX-equiv-y-i-pmod-P-i-s-i" class="headerlink" title="6. $a_iX\equiv y_i \pmod{(P_i +s_i)}$"></a>6. $a_iX\equiv y_i \pmod{(P_i +s_i)}$</h2><h3 id="已知-a-i-P-i"><a href="#已知-a-i-P-i" class="headerlink" title="已知 $a_i,P_i$"></a>已知 $a_i,P_i$</h3><p>$a_i \le O(P^{\alpha}) $<br>$ y_i \le O(P^{\beta}) $<br>$ s_i \le O(P^{\gamma})$</p>
+<p>展开得到等式</p>
+<p>$a_iX+k_iP_i=y_i-k_is_i$</p>
+<p>注意到等式右边最大为 $max(P^{\beta},P^{\alpha+\gamma})$</p>
+<p>所以可认为是小量</p>
+<h3 id="构造-4"><a href="#构造-4" class="headerlink" title="构造"></a>构造</h3><script type="math/tex; mode=display">(X, k_1,k_2,\cdots,k_n)*\begin{bmatrix}1&a_1&a_2&\cdots&a_n\\ 0&P_1&0&\cdots&0\\ 0&0&P_2&\cdots&0\\ \vdots&\vdots&\vdots&\ddots&\vdots\\ 0&0&0&\cdots&P_n\end{bmatrix} = (X,y_1-k_1s_1,y_2-k_2s_2,\cdots,y_n-k_ns_n)</script><h3 id="配平-1"><a href="#配平-1" class="headerlink" title="配平"></a>配平</h3><p>以 $\beta \le \alpha+\gamma \le 1$ 为例</p>
+<script type="math/tex; mode=display">D = \begin{bmatrix}1&0&\cdots&0 \\ 0 &P^{1-(\alpha+\gamma)}&\cdots&0 \\ \vdots&\vdots&\ddots&\vdots\\ 0&0&\cdots &P^{1-(\alpha+\gamma)}\end{bmatrix}</script><p>满足</p>
+<ul>
+<li>若 $\beta \le \alpha+\gamma \le 1$ ：$\alpha+\gamma\le1-\frac{1}{n}$</li>
+<li>若 $ \alpha+\gamma \le \beta \le 1$ : $\beta \le1-\frac{1}{n}$</li>
+</ul>
+<p>感觉这种情况很难构造一种测例</p>
+<p>看一看另一种情况</p>
+<h3 id="X-是小量的情况"><a href="#X-是小量的情况" class="headerlink" title="X 是小量的情况"></a>X 是小量的情况</h3><p>$X \le O(P^{\alpha}) $<br>$ y_i \le O(P^{\beta}) $<br>$ s_i \le O(P^{\gamma})$</p>
+<p>这时候构造仍相同，只不过配平变了</p>
+<p>$\beta \le \alpha+\gamma \le 1$ 的情况</p>
+<script type="math/tex; mode=display">D = \begin{bmatrix}P^{\gamma}&0&\cdots&0 \\ 0 &1&\cdots&0 \\ \vdots&\vdots&\ddots&\vdots\\ 0&0&\cdots &1\end{bmatrix}</script><p>满足 $\cfrac{n}{n+1}+\cfrac{\gamma}{n+1} \ge \alpha+\gamma$</p>
+<p>有 $\alpha &lt; \cfrac{n}{n+1}*(1-\gamma)$</p>
+<p>另一种情况：</p>
+<p>$\beta&lt;\cfrac{n}{n+1}+\cfrac{\beta-\alpha}{n+1}$</p>
+<h3 id="The-First-Attack-on-k-RSA-Moduli-2014"><a href="#The-First-Attack-on-k-RSA-Moduli-2014" class="headerlink" title="The First Attack on k RSA Moduli (2014)"></a>The First Attack on k RSA Moduli (2014)</h3><p>已知 $k \ge 2$ 个 moduli $N_i = p_iq_i$</p>
+<p>等式：</p>
+<script type="math/tex; mode=display">e_ix-y_i\phi{(N_i)} = z_i</script><p>define $\delta = \cfrac{k}{2(k+1)}$</p>
+<p>这个方法的界感觉差不多，但是玩不明白，只有特定的生成的公钥组才能打的出来</p>
+<p>例子如下</p>
+<p><img src="/img/lattice_paper2.jpg" alt="论文例子"></p>
+<h2 id="7-ACD-问题-A-i-xy-i-z-i"><a href="#7-ACD-问题-A-i-xy-i-z-i" class="headerlink" title="7. ACD 问题 $A_i = xy_i+z_i$"></a>7. ACD 问题 $A_i = xy_i+z_i$</h2><h3 id="已知-A-i"><a href="#已知-A-i" class="headerlink" title="已知 $A_i$"></a>已知 $A_i$</h3><p>$x \le O(2^{\alpha}) $<br>$ y_i \le O(2^{\beta}) $<br>$ z_i \le O(2^{\rho})$</p>
+<h3 id="一-构造格"><a href="#一-构造格" class="headerlink" title="一. 构造格"></a>一. 构造格</h3><p>通过 $A_iy_0-A_0y_i$ 将规模从 $2^{\alpha+\beta}$ 降为 $2^{\beta+\rho}$</p>
+<script type="math/tex; mode=display">(y_0, y_1,\cdots,y_n) * \begin{bmatrix}R&A_1&A_2&\cdots&A_n\\0&-A_0&0&\cdots&0\\0&0&-A_0&\cdots&0\\\vdots&\vdots&\vdots&\ddots&\vdots\\0&0&0&\cdots&-A_0\end{bmatrix} = (y_0R,y_0z_1-y_1z_0,\cdots,y_0z_n-y_nz_0)</script><p>范围</p>
+<p>满足</p>
+<p>$\beta+\rho \le \cfrac{n(\alpha+\beta)+\rho}{n+1} $</p>
+<p>得到</p>
+<p>$\beta \le n(\alpha-\rho)$</p>
+<h3 id="二-正交格"><a href="#二-正交格" class="headerlink" title="二. 正交格"></a>二. 正交格</h3><p>寻找一组向量 $a = (a_1,\cdots, a_n)$</p>
+<p>构造等式</p>
+<script type="math/tex; mode=display">(a_1,a_2,\cdots,a_n)*\begin{bmatrix}A_1&R&0&\cdots&0\\A_2&0&R&\cdots&0\\A_3&0&0&\cdots&0\\\vdots&\vdots&\vdots&\ddots&\vdots\\A_n&0&0&\cdots&R\end{bmatrix} = (\Sigma^{n}_{i=1}{a_iA_i},a_1R,\cdots,a_nR)</script><p>其中</p>
+<script type="math/tex; mode=display">\Sigma^{n}_{i=1}{a_iA_i} = x\Sigma^{n}_{i=1}{a_iy_i} +\Sigma^{n}_{i=1}{a_iz_i}</script><p>因此，若找到的 $a$ 与 $y$ 正交，则 $w = (\Sigma^{n}_{i=1}{a_iz_i},a_1R,\cdots,a_nR)$ 极有可能是格上的最短向量</p>
+<p>规约出来得到矩阵 $L$</p>
+<p>可知 $L*y = 0$</p>
+<p>于是通过求 $L$ 的右核选出合适的 $y$</p>
+<p>经测试，以上两种方法的界差不多</p>
+<h3 id="三-coppersmith-求小根"><a href="#三-coppersmith-求小根" class="headerlink" title="三. coppersmith 求小根"></a>三. coppersmith 求小根</h3><p>前提已知 $N = x*y_0$</p>
+<p>设 $z_i$ 为未知变量</p>
+<p>可知 $A_i - z_i$ 均为 $x$ 的倍数</p>
+<p>则有等式</p>
+<p>$N \equiv 0 \pmod{x}\\A_i-z_i \equiv 0 \pmod{x}$</p>
+<p>利用 coppersmith 的扩大模数的方法（原理并没有太懂），把 $N$ 当作模数即可求小根</p>
+<h3 id="四-使用-cuso-优化-coppersmith-进行求解"><a href="#四-使用-cuso-优化-coppersmith-进行求解" class="headerlink" title="四. 使用 cuso 优化 coppersmith 进行求解"></a>四. 使用 cuso 优化 coppersmith 进行求解</h3><p>具体这里就不再阐述了</p>
+<h2 id="8-LWE"><a href="#8-LWE" class="headerlink" title="8. LWE"></a>8. LWE</h2><h3 id="SLWE（求出私钥-s"><a href="#SLWE（求出私钥-s" class="headerlink" title="SLWE（求出私钥 $s$ )"></a>SLWE（求出私钥 $s$ )</h3><h4 id="1-无模数的构造"><a href="#1-无模数的构造" class="headerlink" title="1. 无模数的构造"></a>1. 无模数的构造</h4><p>$A*x+e = b$</p>
+<p>已知 $A$ </p>
+<p>$e$ 很短</p>
+<p>构造</p>
+<script type="math/tex; mode=display">L = \begin{bmatrix}A&b\\0&\beta\end{bmatrix}</script><script type="math/tex; mode=display">L = \begin{bmatrix}A&b\\0&\beta\end{bmatrix}*\begin{bmatrix}-x \\ 1\end{bmatrix} = \begin{bmatrix}e \\ \beta\end{bmatrix}</script><p>可知最后的向量相当小</p>
+<h4 id="2-primal-attack"><a href="#2-primal-attack" class="headerlink" title="2. primal attack"></a>2. primal attack</h4><p>$A_{m\times n}s_{n\times 1}+e_{m\times1} = b_{m\times1} \pmod{p}$</p>
+<p>基础格</p>
+<script type="math/tex; mode=display">(s_1, s_2,\cdots,s_n,1,k_1,k_2,\cdots,k_m)\begin{bmatrix}1&&&&a_{1,1}&a_{2,1}&\cdots&a_{m,1}\\&1&&&\vdots&\vdots&\ddots&\vdots\\&&\cdots&&a_{1,n}&a_{2,n}&\cdots&a_{m,n}\\&&&1&-b_1&-b_2&\cdots&-b_m\\&&&&p&&&\\&&&&&p&&\\&&&&&&\ddots&\\&&&&&&&p\end{bmatrix} = (s_1,s_2,\cdots,s_n,1,e_1,e_2,\cdots,e_m)</script><p>共 $m+n+1$ 维</p>
+<p>优化格</p>
+<p>$As+e = b$<br>$s^TA^T+e^T=b^T $<br>$ K = [I_{n\times n},A^{‘}_{n\times(m-n)}] = PA^T_{m\times n} $<br>$ (s^TP^{-1})*(PA^T) +e^T=b^T $<br>$ s^{‘} = s^TP^{-1}$<br>$s^{‘}K+e^T = b^T$<br>$ \therefore s^{‘}K-b^T = e^T \pmod{p}$</p>
+<p>因为 $K$ 的前 $n$ 维为单位阵，所以可以将格中的模数 $p$ 进行省略，因此可以达到降维的优化效果</p>
+<script type="math/tex; mode=display">(s^{'}_1,s^{'}_2,\cdots,s^{'}_n,k_{m-n+1},k_{m-n+2},\cdots,k_m,1)*\begin{bmatrix}1&&&a^{'}_{1,1}&a^{'}_{1,2}&\cdots&a^{'}_{1,m-n}& \\ & \ddots&&\vdots&\vdots&\ddots&\vdots& \\ &&1&a^{'}_{n,1}&a^{'}_{n,2}&\cdots &a^{'}_{n,m-n}&\\&&& p&&&&\\&&&&p&&&\\&&&&&\ddots&&\\&&&&&&p&\\-b_1&-b_2&-b_3&\cdots&\cdots&\cdots&-b_m&1 \end{bmatrix} = (e_1,e_2,\cdots,e_m,1)</script><h3 id="DLWE（判断是不是-LWE-生成的参数）"><a href="#DLWE（判断是不是-LWE-生成的参数）" class="headerlink" title="DLWE（判断是不是 LWE 生成的参数）"></a>DLWE（判断是不是 LWE 生成的参数）</h3><p>基础版</p>
+<p>原理</p>
+<p>$As+e = b$</p>
+<p>若能找到 $A$ 的左核里的一个短向量 $u$</p>
+<p>即 $uA = 0$</p>
+<p>则有 $uAs+ue = ub = ue \pmod{p}$</p>
+<p>因为 $u,e$ 都是短的，其内积应是一个小的数字</p>
+<p>而随机选取的就会大一些，从而进行区分</p>
+<p>优化版</p>
+<p>依旧降维</p>
+<script type="math/tex; mode=display">P*kernel_{(m-n)\times m} = [I_{(m-n)\times(m-n)},kernel^{'}_{(m-n)\times n}]</script><p>于是可以省下 $m-n$ 维</p>
+<h2 id="9-NTRU"><a href="#9-NTRU" class="headerlink" title="9. NTRU"></a>9. NTRU</h2><h3 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h3><h4 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h4><p>$f(x) \in \tau(d, d+1)\\ g(x) \in \tau(d,d)$</p>
+<p>$R = \cfrac{\mathbb{Z}[x]}{x^N-1}\\R_p = \cfrac{(\mathbb{Z}/p\mathbb{Z})[x]}{x^N-1}\\R_q = \cfrac{(\mathbb{Z}/q\mathbb{Z})[x]}{x^N-1}$</p>
+<p>$R,R_p,R_q$ 为三个卷积多项式环</p>
+<p>多项式乘法相当于对系数进行了卷积操作</p>
+<p>私钥为 $f、g$</p>
+<p>公钥</p>
+<p>$h(x) = f(x)^{-1}*g(x) \ \ in \ R_q$</p>
+<h4 id="center-lift"><a href="#center-lift" class="headerlink" title="center-lift"></a>center-lift</h4><p>将 $R_p,R_q$ 上多项式转到 $R$ 上</p>
+<p>即将 $(0,p)$ 范围内的系数转为 $(-\frac{p}{2},\frac{p}{2})$ </p>
+<h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><p>$e(x) = p \cdot h(x)r(x)+m(x) \pmod{q}$</p>
+<h3 id="解密过程"><a href="#解密过程" class="headerlink" title="解密过程"></a>解密过程</h3><p>$a(x)\equiv f(x)*e(x) \pmod{q}$</p>
+<p>$b(x)\equiv F_{p}(x)*a(x)\pmod{p}$</p>
+<p>$b(x)$ 即为 $m(x)$</p>
+<p>若要满足解密关系成立，需要满足以下条件（证明略）：</p>
+<p>$(3d+\frac{1}{2})\cdot p &lt; \frac{q}{2}$</p>
+<p>即</p>
+<p>$(6d+1)\cdot p &lt;q$</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><h4 id="小密钥空间"><a href="#小密钥空间" class="headerlink" title="小密钥空间"></a>小密钥空间</h4><p>$N,d$ 过小直接枚举</p>
+<h4 id="格规约"><a href="#格规约" class="headerlink" title="格规约"></a>格规约</h4><p>$h(x)\equiv f(x)^{-1}\cdot g(x) \ in \ R_q$</p>
+<p>可转化为 $f(x)\cdot h(x) = g(x) + u(x)\cdot p$</p>
+<p>因为 $f(x),g(x)$ 均为小量，于是有等式</p>
+<script type="math/tex; mode=display">(f(x),-u(x))\cdot \begin{bmatrix}1&h(x)\\0&q\end{bmatrix} = (f(x), g(x))</script><p>将多项式乘法转换为矩阵乘法</p>
+<p>$F,G,U$ 为三个多项式的系数向量</p>
+<p>$H$ 为多项式乘法转换为卷积的矩阵</p>
+<p>$f(x)\cdot1 \Rightarrow F_{1\times n}\cdot I_{n\times n}$</p>
+<p>$f(x)\cdot h(x)-q\cdot u(x) \Rightarrow F_{1\times n}\cdot H_{n\times n} - q\cdot U_{1\times n}\cdot I_{n\times n} = G_{1\times n}$</p>
+<p>因此格变为</p>
+<script type="math/tex; mode=display">M = \left[ \begin{array}{c c c c | c c c c}1&0&\cdots&0&h_0&h_1&\cdots&h_{N-1} \\ 0&1&\cdots&0&h_{N-1}&h_0&\cdots&h_{N-2} \\ \vdots&\vdots&\ddots&\vdots&\vdots&\vdots&\ddots&\vdots \\ 0&0&\cdots&1&h_1&h_2&\cdots&h_0 \\ \hline 0&0&\cdots&0&q&0&\cdots&0 \\ 0&0&\cdots&0&0&q&\cdots&0 \\ \vdots&\vdots&\ddots&\vdots&\vdots&\vdots&\ddots&\vdots \\ 0&0&\cdots&0&0&0&\cdots&q\end{array} \right]</script><p>让我们来看一下有解的界吧</p>
+<p>$det(M) = q^N$</p>
+<p>$\vert\vert(f,g)\vert\vert \approx \sqrt{4d}$</p>
+<p>我觉得粗略的界是  $4d&lt;q$ (有待确认)，而且 N 很大的时候，就算满足界也解不出来</p>
+<p>维度比较大的时候要用 BKZ</p>
+<p>但是我在 N = 160 时，用 flatter 也干出来了</p>
+<h2 id="10-HNP（隐藏数问题）"><a href="#10-HNP（隐藏数问题）" class="headerlink" title="10. HNP（隐藏数问题）"></a>10. HNP（隐藏数问题）</h2><p>问题为给出 n 组方程，每组给出</p>
+<script type="math/tex; mode=display">\beta_i \equiv \alpha_i * x_0 \pmod p</script><p>$p$ 是 $m$ 位大小的数</p>
+<p>其中给定 $p,\alpha_i$ 的全部和 $\beta_i$ 的一定位数</p>
+<p>解出 $x_0$</p>
+<p>假设 $\beta_i$ 已知 $s$ 位</p>
+<p>则理论上的界: $s*(n+1)&gt; m$</p>
+<p>该问题可解</p>
+<h3 id="eg1-来自-tover-的-blog"><a href="#eg1-来自-tover-的-blog" class="headerlink" title="eg1(来自 tover 的 blog)"></a>eg1(来自 tover 的 blog)</h3><p>问题：</p>
+<p>$n_{max} = 35,s = 8, m = 256,q = 2^{m}$ 泄漏 $\beta_i$ 的高 $s$ 位</p>
+<p>设已知高位为 $B_i$ ,未知低位为 $b_i$</p>
+<script type="math/tex; mode=display">A_ix_0 \equiv B_i + b_i \pmod q</script><p>此时 $x_0,b_i$ 未知，且分别为 $m \ bit,(m-s) \ bit$</p>
+<p>由于 $p$ 是 $m \ bit$ ，所以要想办法把 $x_0$ 转化为较小的未知数</p>
+<p>任取一组数据有</p>
+<script type="math/tex; mode=display">x_0 \equiv A_0^{-1}(B_0+b_0) \pmod q</script><p>代入得</p>
+<script type="math/tex; mode=display">A_{0}^{-1}(A_iB_0-A_0B_i)+A_{0}^{-1}A_ib_0 \equiv b_i \pmod q</script><p>令 $D_i \equiv A_{0}^{-1}(A_iB_0-A_0B_i) \pmod q$, $E_i \equiv A_{0}^{-1}A_i \pmod q$, 展开得</p>
+<script type="math/tex; mode=display">D_i+E_ib_0-k_iq = b_i</script><p>此时几个未知数均为 $(m-s) \ bit$, 可以构造格进行求解</p>
+<p>令常数 $R=2^{m-s}$ ，接下来构造格 $L(B)$</p>
+<script type="math/tex; mode=display">B = \begin{bmatrix} -q & \\ &-q \\ & & \ddots \\ & & & -q \\ E_1 & E_2 & \cdots & E_{n-1} & 1 \\ D_1 & D_2 & \cdots & D_{n-1} & &R \end{bmatrix}_{(n+1)*(n+1)}</script><p>有 $vB = (k_1,k_2,\cdots,k_{n-1},b_0,1)\cdot B=(b_1,b_2,\cdots,b_{n-1},b_0,R) = w$</p>
+<p>可算</p>
+<script type="math/tex; mode=display">||w|| \approx 2^{m-s}</script><script type="math/tex; mode=display">\sigma(L(B)) \approx 2^{\frac{n*m-s}{n+1}}</script><p>若 $||w|| \le \sigma(L(B))$ 的话有</p>
+<script type="math/tex; mode=display">m-s \le \cfrac{n \cdot m - s}{n+1}</script><p>化简得</p>
+<script type="math/tex; mode=display">s \cdot n \ge m</script><p>若满足此式则问题大概率可解</p>
+<h3 id="eg2-给低位"><a href="#eg2-给低位" class="headerlink" title="eg2 给低位"></a>eg2 给低位</h3><p>$n_{max} = 35,m =256,q$ 为 $256$ 位的素数，泄漏 $\beta_i$ 的低八位</p>
+<p>$A_ix\equiv T*B_i+b_i \pmod{q}$</p>
+<p>$x \equiv A_{0}^{-1}(T*B_0+b_0)$</p>
+<p>$(TA_{0})^{-1}(A_ib_0-A_0b_i)+(A_0^{-1}A_i)B_0\equiv B_i\pmod{q}$</p>
+<p>$D_i = (TA_{0})^{-1}(A_ib_0-A_0b_i)、E_i = (A_0^{-1}A_i)$</p>
+<script type="math/tex; mode=display">D_i+E_i*B_0-k_iq=B_i</script><script type="math/tex; mode=display">B = \begin{bmatrix} -q & \\ &-q \\ & & \ddots \\ & & & -q \\ E_1 & E_2 & \cdots & E_{n-1} & 1 \\ D_1 & D_2 & \cdots & D_{n-1} & &R \end{bmatrix}_{(n+1)*(n+1)}</script><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://0xffff.one/d/1062-wiener-s-v-s-lattices-ax-b-p-de">Wiener’s v.s Lattices —— Ax≡y(mod P)的方程解法笔记</a></li>
+<li><a target="_blank" rel="noopener" href="https://eprint.iacr.org/2012/675.pdf">Minkowski sum based lattice construction for multivariate simultaneous Coppersmith’s technique and applications to RSA</a></li>
+<li><a target="_blank" rel="noopener" href="https://eprint.iacr.org/2014/549.pdf">New Attacks on the RSA Cryptosystem</a></li>
+<li><a target="_blank" rel="noopener" href="https://tover.xyz/p/NTRU/">NTRU学习笔记</a></li>
+<li><a target="_blank" rel="noopener" href="https://tover.xyz/p/CVP-to-SVP/">Embedding Technique</a></li>
+<li><a target="_blank" rel="noopener" href="https://tangcuxiaojikuai.xyz/post/758dd33a.html">LWE</a></li>
+<li><a target="_blank" rel="noopener" href="https://tover.xyz/p/HNP-note/">HNP学习笔记</a></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://lst4r-max.github.io">Lst4r</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://lst4r-max.github.io/2025/11/07/Lattice/">https://lst4r-max.github.io/2025/11/07/Lattice/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://lst4r-max.github.io" target="_blank">Lst4r's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Crypto/">Crypto</a><a class="post-meta__tags" href="/tags/LaTex/">LaTex</a><a class="post-meta__tags" href="/tags/Lattice/">Lattice</a></div><div class="post_share"><div class="social-share" data-image="/img/1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/04/08/XYCTF2025%20wp&amp;%E5%A4%8D%E7%8E%B0/" title="XYCTF2025 wp&amp;复现"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">XYCTF2025 wp&amp;复现</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/03/06/Lst4r-s-first-Blog/" title="RSA 基本原理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-06</div><div class="title">RSA 基本原理</div></div></a></div><div><a href="/2024/03/12/RSA2/" title="RSA 一些进阶攻击方式及变体"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-12</div><div class="title">RSA 一些进阶攻击方式及变体</div></div></a></div><div><a href="/2024/08/11/SRCTF%E5%A4%8D%E7%8E%B0/" title="SRCTF Crypto 复现"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-11</div><div class="title">SRCTF Crypto 复现</div></div></a></div><div><a href="/2024/03/25/NKCTF2024-%E5%A4%8D%E7%8E%B0-wp/" title="NKCTF2024 复现+wp"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-25</div><div class="title">NKCTF2024 复现+wp</div></div></a></div><div><a href="/2024/11/05/%E5%BC%BA%E7%BD%91%E6%9D%AF2024%E5%A4%8D%E7%8E%B0/" title="强网杯2024 Crypto复现"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-05</div><div class="title">强网杯2024 Crypto复现</div></div></a></div><div><a href="/2024/04/30/XYCTF2024%20WP/" title="XYCTF Crypto WP"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-30</div><div class="title">XYCTF Crypto WP</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Lst4r</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Lst4r-max/Lst4r-max.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Lst4r's new Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E6%A0%BC%E4%B8%8A%E9%97%AE%E9%A2%98%E7%A7%AF%E7%B4%AF%E4%B8%8E%E7%90%86%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">各种格上问题积累与理解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Ax-equiv-y-pmod-P-%E5%AF%B9%E5%BA%94-Wiener%E2%80%99s-Attack"><span class="toc-number">1.1.</span> <span class="toc-text">1. $Ax \equiv y \pmod{P} (对应 \ Wiener’s \ Attack)$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-P-%E5%B7%B2%E7%9F%A5%EF%BC%8C-x-y-%E7%9B%B8%E5%AF%B9%E4%B8%BA%E5%B0%8F%E9%87%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">$A, P$ 已知，$x, y$ 相对为小量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0"><span class="toc-number">1.1.2.</span> <span class="toc-text">构造</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-A-ix-i-equiv-Y-pmod-P"><span class="toc-number">1.2.</span> <span class="toc-text">2. $A_ix_i\equiv Y \pmod{P}$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-A-i-P-Y-%E4%B8%BA%E6%9C%AA%E7%9F%A5%E5%A4%A7%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">已知 $A_i, P$ ; $Y$ 为未知大数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%BD%AC%E6%8D%A21"><span class="toc-number">1.2.2.</span> <span class="toc-text">问题转换1:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%BD%AC%E6%8D%A22"><span class="toc-number">1.2.3.</span> <span class="toc-text">问题转换2:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Sigma-n-i-1-A-ix-i-equiv-y-pmod-P"><span class="toc-number">1.3.</span> <span class="toc-text">3. $\Sigma^{n}_{i&#x3D;1} A_ix_i \equiv y \pmod{P}$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-A-i-P"><span class="toc-number">1.3.1.</span> <span class="toc-text">已知 $A_i,P$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0-1"><span class="toc-number">1.3.2.</span> <span class="toc-text">构造</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Sigma-n-i-1-A-ix-i-equiv-B-pmod-P"><span class="toc-number">1.4.</span> <span class="toc-text">4. $\Sigma^{n}_{i&#x3D;1} A_ix_i \equiv B \pmod{P}$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-A-i-P-B"><span class="toc-number">1.4.1.</span> <span class="toc-text">已知 $A_i, P, B$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0-2"><span class="toc-number">1.4.2.</span> <span class="toc-text">构造</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-A-ix-i-equiv-y-i-pmod-P-s-%E5%AF%B9%E5%BA%94%E6%89%A9%E5%B1%95-wiener"><span class="toc-number">1.5.</span> <span class="toc-text">5. $A_ix_i\equiv y_i \pmod{(P+s)}$ (对应扩展 wiener)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-A-i-P-1"><span class="toc-number">1.5.1.</span> <span class="toc-text">已知 $A_i, P$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E7%AD%89%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.5.2.</span> <span class="toc-text">四个等式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0-3"><span class="toc-number">1.5.3.</span> <span class="toc-text">构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E5%B9%B3"><span class="toc-number">1.5.4.</span> <span class="toc-text">配平</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9CMinkowski-sum-based-lattice-construction-for-multivariate-simultaneous-Coppersmith%E2%80%99s-technique-and-applications-to-RSA%E2%80%9D-Section-4"><span class="toc-number">1.5.5.</span> <span class="toc-text">“Minkowski sum based lattice construction for multivariate simultaneous Coppersmith’s technique and applications to RSA” (Section 4)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-a-iX-equiv-y-i-pmod-P-i-s-i"><span class="toc-number">1.6.</span> <span class="toc-text">6. $a_iX\equiv y_i \pmod{(P_i +s_i)}$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-a-i-P-i"><span class="toc-number">1.6.1.</span> <span class="toc-text">已知 $a_i,P_i$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0-4"><span class="toc-number">1.6.2.</span> <span class="toc-text">构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E5%B9%B3-1"><span class="toc-number">1.6.3.</span> <span class="toc-text">配平</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#X-%E6%98%AF%E5%B0%8F%E9%87%8F%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">1.6.4.</span> <span class="toc-text">X 是小量的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-First-Attack-on-k-RSA-Moduli-2014"><span class="toc-number">1.6.5.</span> <span class="toc-text">The First Attack on k RSA Moduli (2014)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-ACD-%E9%97%AE%E9%A2%98-A-i-xy-i-z-i"><span class="toc-number">1.7.</span> <span class="toc-text">7. ACD 问题 $A_i &#x3D; xy_i+z_i$</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-A-i"><span class="toc-number">1.7.1.</span> <span class="toc-text">已知 $A_i$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-%E6%9E%84%E9%80%A0%E6%A0%BC"><span class="toc-number">1.7.2.</span> <span class="toc-text">一. 构造格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E6%AD%A3%E4%BA%A4%E6%A0%BC"><span class="toc-number">1.7.3.</span> <span class="toc-text">二. 正交格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-coppersmith-%E6%B1%82%E5%B0%8F%E6%A0%B9"><span class="toc-number">1.7.4.</span> <span class="toc-text">三. coppersmith 求小根</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E4%BD%BF%E7%94%A8-cuso-%E4%BC%98%E5%8C%96-coppersmith-%E8%BF%9B%E8%A1%8C%E6%B1%82%E8%A7%A3"><span class="toc-number">1.7.5.</span> <span class="toc-text">四. 使用 cuso 优化 coppersmith 进行求解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-LWE"><span class="toc-number">1.8.</span> <span class="toc-text">8. LWE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SLWE%EF%BC%88%E6%B1%82%E5%87%BA%E7%A7%81%E9%92%A5-s"><span class="toc-number">1.8.1.</span> <span class="toc-text">SLWE（求出私钥 $s$ )</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%97%A0%E6%A8%A1%E6%95%B0%E7%9A%84%E6%9E%84%E9%80%A0"><span class="toc-number">1.8.1.1.</span> <span class="toc-text">1. 无模数的构造</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-primal-attack"><span class="toc-number">1.8.1.2.</span> <span class="toc-text">2. primal attack</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DLWE%EF%BC%88%E5%88%A4%E6%96%AD%E6%98%AF%E4%B8%8D%E6%98%AF-LWE-%E7%94%9F%E6%88%90%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%89"><span class="toc-number">1.8.2.</span> <span class="toc-text">DLWE（判断是不是 LWE 生成的参数）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-NTRU"><span class="toc-number">1.9.</span> <span class="toc-text">9. NTRU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.9.1.</span> <span class="toc-text">加密过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90"><span class="toc-number">1.9.1.1.</span> <span class="toc-text">密钥生成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#center-lift"><span class="toc-number">1.9.1.2.</span> <span class="toc-text">center-lift</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86"><span class="toc-number">1.9.1.3.</span> <span class="toc-text">加密</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.9.2.</span> <span class="toc-text">解密过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95"><span class="toc-number">1.9.3.</span> <span class="toc-text">攻击方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E5%AF%86%E9%92%A5%E7%A9%BA%E9%97%B4"><span class="toc-number">1.9.3.1.</span> <span class="toc-text">小密钥空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%BC%E8%A7%84%E7%BA%A6"><span class="toc-number">1.9.3.2.</span> <span class="toc-text">格规约</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-HNP%EF%BC%88%E9%9A%90%E8%97%8F%E6%95%B0%E9%97%AE%E9%A2%98%EF%BC%89"><span class="toc-number">1.10.</span> <span class="toc-text">10. HNP（隐藏数问题）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#eg1-%E6%9D%A5%E8%87%AA-tover-%E7%9A%84-blog"><span class="toc-number">1.10.1.</span> <span class="toc-text">eg1(来自 tover 的 blog)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eg2-%E7%BB%99%E4%BD%8E%E4%BD%8D"><span class="toc-number">1.10.2.</span> <span class="toc-text">eg2 给低位</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">1.11.</span> <span class="toc-text">引用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/07/Lattice/" title="Lattice 笔记 1">Lattice 笔记 1</a><time datetime="2025-11-07T15:48:36.000Z" title="发表于 2025-11-07 23:48:36">2025-11-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/08/XYCTF2025%20wp&amp;%E5%A4%8D%E7%8E%B0/" title="XYCTF2025 wp&amp;复现">XYCTF2025 wp&amp;复现</a><time datetime="2025-04-08T10:38:00.559Z" title="发表于 2025-04-08 18:38:00">2025-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/05/%E5%BC%BA%E7%BD%91%E6%9D%AF2024%E5%A4%8D%E7%8E%B0/" title="强网杯2024 Crypto复现">强网杯2024 Crypto复现</a><time datetime="2024-11-05T12:24:31.000Z" title="发表于 2024-11-05 20:24:31">2024-11-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/11/SRCTF%E5%A4%8D%E7%8E%B0/" title="SRCTF Crypto 复现">SRCTF Crypto 复现</a><time datetime="2024-08-11T04:33:20.000Z" title="发表于 2024-08-11 12:33:20">2024-08-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/30/XYCTF2024%20WP/" title="XYCTF Crypto WP">XYCTF Crypto WP</a><time datetime="2024-04-30T01:52:47.000Z" title="发表于 2024-04-30 09:52:47">2024-04-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Lst4r</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
